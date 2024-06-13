@@ -1,4 +1,5 @@
 <?php
+require_once 'configuracoes/Cookie.php';
 
 class Pessoa_Controlador
 {
@@ -8,19 +9,35 @@ class Pessoa_Controlador
 
     public function __construct()
     {
-        $this->pessoas = array();
-        $this->quantidade = 0;
-    }
+        $this->pessoas = Cookie::get('pessoas') || array();
+        $this->quantidade = Cookie::get_int('quantidade_pessoas') ?? rand(10, 100);;
+        Cookie::set('pessoas', $this->pessoas);
+        Cookie::set('quantidade_pessoas', $this->quantidade);
 
-    public static function getInstance(){
-        if(!isset(self::$instance)){
-            self::$instance = new self();
-        }
-        return self::$instance;
     }
 
     public function get_pessoas()
     {
         return $this->pessoas;
+    }
+
+    public function get_quantidade()
+    {
+        return $this->quantidade;
+    }
+
+    public function adicionar_pessoa(Pessoa $pessoa)
+    {
+        $this->pessoas[] = $pessoa;
+    }
+
+    public function buscar_pessoas(Pessoa $pessoa)
+    {
+        foreach ($this->pessoas as $pessoa) {
+            if ($pessoa == $pessoa) {
+                return $pessoa;
+            }
+        }
+        return null;
     }
 }

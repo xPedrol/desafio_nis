@@ -7,7 +7,7 @@ class Endpoint
 
     public function __construct()
     {
-        $this->pessoa_controlador = Pessoa_Controlador::getInstance();
+        $this->pessoa_controlador = new Pessoa_Controlador();
     }
 
     public function endpoint_existe($endpoint)
@@ -18,17 +18,34 @@ class Endpoint
     public function get_pessoas()
     {
         try {
-            return array([
+            return array(
                 'status' => 'sucesso',
                 'conteudo' => $this->pessoa_controlador->get_pessoas()
-            ]);
-        } catch (Exception $e) {
-            return array(
-                'status' => 'erro',
-                'mensagem' => $e->getMessage()
             );
+        } catch (Exception $e) {
+            return $this->enviar_erro($e->getMessage());
         }
 
+    }
+
+    public function get_quantidade_pessoas()
+    {
+        try {
+            return array(
+                'status' => 'sucesso',
+                'conteudo' => $this->pessoa_controlador->get_quantidade()
+            );
+        } catch (Exception $e) {
+            return $this->enviar_erro($e->getMessage());
+        }
+    }
+
+    private function enviar_erro($e = 'Sem menssagem')
+    {
+        return array(
+            'status' => 'erro',
+            'mensagem' => $e
+        );
     }
 
 }
