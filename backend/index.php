@@ -3,29 +3,37 @@
 require_once 'api/index.php';
 require_once 'api/Rota.php';
 require_once 'controladores/Pessoa_Controlador.php';
-
+// Classe responsavel por iniciar a API. Aqui pegamos o método e parametros da aplicação, fazemos alguns tratamentos e passamos as informaçõe
+// para as demais classes.
 class Index
 {
     public function iniciar_api()
     {
-        $api = new Api();
-        $rota = new Rota();
-        $metodo = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
-        $rota->set_metodo($metodo);
-        if ($metodo == 'GET') {
-            $rota->set_parametros($_GET);
+        try {
+            // API e Rota poderiam ser uma classe só mas achei melhor separar para tornar o codigo mais legivel.
+            $api = new Api();
+            $rota = new Rota();
+            $metodo = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+            // Precisamos passar o metodo da requisição para Rota afim de filtar as rotas de acordo com os metodos que cada uma permite.
+            $rota->set_metodo($metodo);
+            if ($metodo == 'GET') {
+                $rota->set_parametros($_GET);
+            }
+            if ($metodo == 'POST') {
+                $rota->set_parametros($_POST);
+            }
+            $caminho_rota = null;
+            if (isset($_GET['endpoint'])) {
+                $caminho_rota = $_GET['endpoint'];
+            }
+            // É necessário enviar o caminho da rota via uma variavel tipo GET chamada endpoint.
+            if (!$caminho_rota) {
+                $api->enviar_resposta('Por favor especifique um endpoint');
+            }
+            $api->enviar_resposta($rota->chamar_funcao($caminho_rota));
+        }catch (Exception $e){
+            $api->enviar_erro($e->getMessage());
         }
-        if ($metodo == 'POST') {
-            $rota->set_parametros($_POST);
-        }
-        $caminho_rota = null;
-        if (isset($_GET['endpoint'])) {
-            $caminho_rota = $_GET['endpoint'];
-        }
-        if (!$caminho_rota) {
-            $api->enviar_resposta('Por favor especifique um endpoint');
-        }
-        $api->enviar_resposta($rota->chamar_funcao($caminho_rota));
     }
 }
 

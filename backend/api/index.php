@@ -1,5 +1,5 @@
 <?php
-
+// Classe responsável por enviar a resposta da requisição, seja sucesso ou erro.
 class Api
 {
     public function __construct()
@@ -18,7 +18,7 @@ class Api
     public function enviar_resposta($retorno = array())
     {
         header('Content-type: application/json');
-        echo json_encode($retorno);
+        print_r(json_encode($retorno));
         die(1);
     }
 }

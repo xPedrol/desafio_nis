@@ -5,10 +5,9 @@ class Pessoa
     private $nome;
     private $nis;
 
-    public function __construct($nome, $nis)
+    public function __construct($nome)
     {
         $this->nome = $nome;
-        $this->nis = $nis;
     }
 
     public function get_nome()
@@ -29,5 +28,13 @@ class Pessoa
     public function set_nis($nis)
     {
         $this->nis = $nis;
+    }
+    // Método responsavel por converter o objeto de Pessoa para um vetor comum. Facilitando o envio dos dados via JSON.
+    public function converter()
+    {
+        return array(
+            "nome" => $this->nome,
+            "nis" => $this->nis
+        );
     }
 }

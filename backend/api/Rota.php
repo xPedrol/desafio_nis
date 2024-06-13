@@ -1,7 +1,9 @@
 <?php
+require_once 'utilizadades.php';
 require_once 'classes/Pessoa.php';
 require_once 'controladores/Pessoa_Controlador.php';
-
+// Classe responsável pelas rotas da aplicação. Aqui controlamos os parametros e o método da requisição.
+// Alem de encaminhar as requisições a suas respectivivas funcoções.
 class Rota
 {
     private $pessoa_controlador;
@@ -62,7 +64,7 @@ class Rota
         try {
             return array(
                 'status' => 'sucesso',
-                'conteudo' => $this->pessoa_controlador->get_pessoas()
+                'conteudo' =>  $this->pessoa_controlador->formatar_pessoas()
             );
         } catch (Exception $e) {
             return $this->enviar_erro($e->getMessage());
@@ -75,14 +77,10 @@ class Rota
     {
         if ($this->metodo !== 'POST') return $this->enviar_erro('Método inválido');
         try {
-            $numeros = array();
-            for ($i = 0; $i < 11; $i++) {
-                $numeros[] = mt_rand();
-            }
-            $pessoa = new Pessoa($this->parametros['nome'], $numeros);
+            $pessoa = new Pessoa($this->parametros['nome']);
             $res = $this->pessoa_controlador->adicionar_pessoa($pessoa);
             if (!($res instanceof Pessoa)) throw $res;
-            return $pessoa;
+            return $pessoa->converter();
         } catch (Exception $e) {
             return $this->enviar_erro($e->getMessage());
         }
