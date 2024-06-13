@@ -2,31 +2,15 @@
 
 class Api
 {
-    private $metodo;
-
     public function __construct()
     {
         $this->metodo = NULL;
     }
 
-    public function set_metodo($metodo)
-    {
-        $metodos = ['POST', 'GET'];
-        if (!in_array($metodo, $metodos)) {
-            $this->enviar_erro('Método inválido');
-        }
-        $this->metodo = $metodo;
-    }
-
-    public function get_metodo()
-    {
-        return $this->metodo;
-    }
-
     public function enviar_erro($messagem = 'Erro ao executar programa')
     {
         $retorno = array();
-        $retorno['status'] = 'ERROR';
+        $retorno['status'] = 'erro';
         $retorno['message'] = $messagem;
         $this->enviar_resposta($retorno);
     }

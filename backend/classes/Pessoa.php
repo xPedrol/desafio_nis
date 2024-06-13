@@ -11,22 +11,22 @@ class Pessoa
         $this->nis = $nis;
     }
 
-    public function getNome()
+    public function get_nome()
     {
         return $this->nome;
     }
 
-    public function setNome($nome)
+    public function set_nome($nome)
     {
         $this->nome = $nome;
     }
 
-    public function getNis()
+    public function get_nis()
     {
         return $this->nis;
     }
 
-    public function setNis($nis)
+    public function set_nis($nis)
     {
         $this->nis = $nis;
     }
