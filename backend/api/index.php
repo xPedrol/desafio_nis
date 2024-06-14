@@ -20,9 +20,9 @@ class Api
     {
         header('Content-type: application/json');
         header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-        header("Access-Control-Allow-Headers: Content-Type");
-        print_r(json_encode($retorno));
+        header("Access-Control-Allow-Methods: GET, POST");
+        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+        echo json_encode($retorno);
         die(1);
     }
 }

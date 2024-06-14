@@ -10,16 +10,16 @@
     <title>Número de Identificação Social</title>
 </head>
 <body>
-<div class="bg-radial-gradient flex justify-center items-center min-w-xl mx-2">
+<div class="bg-radial-gradient flex justify-center items-center min-w-md mx-2">
     <div class="flex flex-col">
-        <div class="p-10 w-full max-w-3xl bg-white border-[1px] border-gray-400 rounded-md">
+        <div class="p-10 w-full max-w-md  bg-white border-[1px] border-gray-400 rounded-md">
             <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Número de Identificação Social</h2>
 
             <div id="nis-div">
                 <p class="mt-4 text-lg leading-8 text-gray-500">Lista de todos os NIS cadastrados.</p>
 
-
-                <div class="relative overflow-x-auto mt-4">
+                <p class="mt-4 text-lg leading-8 text-red-500 text-center" id="sem-cadastros">Nenhum cadastro foi encontrado.</p>
+                <div class="relative overflow-x-auto mt-4 hidden" id="cadastros-tabela">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead class="text-xs uppercase">
                         <tr>
@@ -31,15 +31,8 @@
                             </th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr class="odd:bg-white even:bg-gray-50">
-                            <th scope="row" class="py-4 font-medium text-gray-900 whitespace-nowrap">
-                                Apple MacBook Pro 17"
-                            </th>
-                            <td class="py-4">
-                                Silver
-                            </td>
-                        </tr>
+                        <tbody id="cadastros">
+
                         </tbody>
                     </table>
                 </div>
@@ -56,6 +49,6 @@
         </div>
     </div>
 </div>
-<script src="javascripit/index.js"></script>
+<script src="javascripit/cadastros.js"></script>
 </body>
 </html>
