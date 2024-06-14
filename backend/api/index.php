@@ -18,6 +18,11 @@ class Api
 
     public function enviar_resposta($retorno = array())
     {
+        if (isset($retorno['status'])) {
+            http_response_code($retorno['status']);
+        } else {
+            http_response_code(200);
+        }
         header('Content-type: application/json');
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: GET, POST");

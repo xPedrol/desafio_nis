@@ -16,9 +16,14 @@ const gerar_nis = () => {
             })
         }
     }).then(response => response.json())
-        .then(() => {
-            nis_div_sucesso.style.display = "block";
-            nis_div_erro.style.display = "none";
+        .then((data) => {
+            if (data.status === 201) {
+                nis_div_sucesso.style.display = "block";
+                nis_div_erro.style.display = "none";
+            } else {
+                throw new Error(data.conteudo);
+            }
+
         })
         .catch((erro) => {
             nis_div_sucesso.style.display = "none";

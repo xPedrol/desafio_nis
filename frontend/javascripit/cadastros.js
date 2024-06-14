@@ -1,12 +1,6 @@
 const buscar_pessoas = () => {
     const cadastros = document.getElementById('cadastros');
-    fetch('http://localhost/desafio/backend?endpoint=buscar_pessoas', {
-        method: "GET",
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(response => response.json())
+    fetch('http://localhost/desafio/backend?endpoint=buscar_pessoas').then(response => response.json())
         .then(data => {
             if (data['conteudo'] === []) return;
             document.getElementById('sem-cadastros').style.display = 'none';

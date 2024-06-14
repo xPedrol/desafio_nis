@@ -43,15 +43,15 @@ class Rota
                 return $this->enviar_erro('Função inválida');
             }
         } catch (Exception $e) {
-            return $this->enviar_erro($e->getMessage());
+            return $this->enviar_erro($e->getMessage(), 404);
         }
     }
 
-    private function enviar_erro($e = 'Sem menssagem')
+    private function enviar_erro($e = 'Sem menssagem', $status = 404)
     {
         return array(
-            'status' => 'erro',
-            'mensagem' => $e
+            'status' => $status,
+            'conteudo' => $e
         );
     }
 
@@ -62,8 +62,7 @@ class Rota
         if ($this->metodo !== 'GET') return $this->enviar_erro('Método inválido');
         try {
             return array(
-                'status' => 'sucesso',
-                'conteudo' =>  $this->pessoa_controlador->formatar_pessoas()
+                'conteudo' => $this->pessoa_controlador->formatar_pessoas()
             );
         } catch (Exception $e) {
             return $this->enviar_erro($e->getMessage());
@@ -79,9 +78,12 @@ class Rota
             $pessoa = new Pessoa($this->parametros['nome']);
             $res = $this->pessoa_controlador->adicionar_pessoa($pessoa);
             if (!($res instanceof Pessoa)) throw $res;
-            return $pessoa->converter();
+            return array(
+                'conteudo' => $pessoa->converter(),
+                'status' => 201
+            );
         } catch (Exception $e) {
-            return $this->enviar_erro($e->getMessage());
+            return $this->enviar_erro($e->getMessage(), 400);
         }
 
 
@@ -92,7 +94,6 @@ class Rota
         if ($this->metodo !== 'GET') return $this->enviar_erro('Método inválido');
         try {
             return array(
-                'status' => 'sucesso',
                 'conteudo' => $this->pessoa_controlador->get_quantidade()
             );
         } catch (Exception $e) {
