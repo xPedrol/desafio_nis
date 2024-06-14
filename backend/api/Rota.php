@@ -1,5 +1,4 @@
 <?php
-require_once 'utilizadades.php';
 require_once 'classes/Pessoa.php';
 require_once 'controladores/Pessoa_Controlador.php';
 // Classe responsável pelas rotas da aplicação. Aqui controlamos os parametros e o método da requisição.

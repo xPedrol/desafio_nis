@@ -67,6 +67,7 @@ class Pessoa_Controlador
     public function formatar_pessoas()
     {
         $pessoas = $this->get_pessoas();
+        if($pessoas == null) return [];
         $novo_vetor = [];
         foreach ($pessoas as $pessoa) {
             $novo_vetor[] = $pessoa->converter();
