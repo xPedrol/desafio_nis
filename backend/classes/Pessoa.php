@@ -8,6 +8,7 @@ class Pessoa
     public function __construct($nome)
     {
         $this->nome = $nome;
+        $this->nis = '';
     }
 
     public function get_nome(): string
