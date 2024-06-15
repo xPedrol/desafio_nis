@@ -5,10 +5,10 @@ class Pessoa
     private string $nome;
     private string $nis;
 
-    public function __construct($nome)
+    public function __construct($nome, $nis = '')
     {
         $this->nome = $nome;
-        $this->nis = '';
+        $this->nis = $nis;
     }
 
     public function get_nome(): string

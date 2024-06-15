@@ -74,8 +74,7 @@ class Rota
         if (trim($this->parametros['nome']) === "") return $this->enviar_erro('Nome inváido');
         try {
             $pessoa = new Pessoa($this->parametros['nome']);
-            $res = $this->pessoa_controlador->adicionar_pessoa($pessoa);
-            if (!($res instanceof Pessoa)) throw $res;
+            $this->pessoa_controlador->adicionar_pessoa($pessoa);
             return array(
                 'conteudo' => $pessoa->converter(),
                 'status' => 201

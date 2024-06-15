@@ -16,9 +16,9 @@ class Cookie
         return null;
     }
 
-    public static function set_array(string $chave, array $array): void
+    public static function set_array(string $chave, array $array): bool
     {
-        setcookie($chave, serialize($array), time() + (86400 * 30), "/");
+        return setcookie($chave, serialize($array), time() + (86400 * 30), "/");
     }
 
     public static function get_array(string $chave)

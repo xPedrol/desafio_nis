@@ -14,11 +14,16 @@ class Pessoa_Controlador
 
     }
 
-    public function set_pessoa(Pessoa $pessoa): void
+    public function limpar_armazenamento()
+    {
+        $_COOKIE = [];
+    }
+
+    public function set_pessoa(Pessoa $pessoa): bool
     {
         $pessoas = $this->get_pessoas();
         $pessoas[] = $pessoa;
-        Cookie::set_array('pessoas', $pessoas);
+        return Cookie::set_array('pessoas', $pessoas);
     }
 
     public function get_pessoas(): mixed
@@ -26,18 +31,20 @@ class Pessoa_Controlador
         return Cookie::get_array('pessoas');
     }
 
-    public function adicionar_pessoa(Pessoa $pessoa): Pessoa|Exception
+    public function adicionar_pessoa(Pessoa $pessoa): Pessoa
     {
         // Aqui verificamos se uma pessoa existe e geramos o NIS
         if ($this->buscar_pessoa($pessoa) !== null) {
-            return new Exception('Pessoa já cadastrada');
+            throw new Exception('Pessoa já cadastrada');
         }
         $nis = '';
         for ($i = 0; $i < 11; $i++) {
             $nis .= mt_rand(0, 9);
         }
         $pessoa->set_nis($nis);
-        $this->set_pessoa($pessoa);
+        if (!$this->set_pessoa($pessoa)) {
+            throw new Exception('Erro ao cadastrar pessoa');
+        }
         return $pessoa;
     }
 
