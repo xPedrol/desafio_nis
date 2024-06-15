@@ -16,7 +16,7 @@ Antes de começar, certifique-se de ter um servidor local como XAMPP ou similar 
 2. Mova a pasta clonada `desafio_nis` para a pasta de projetos do seu servidor local. Por exemplo, se estiver usando
    XAMPP, mova para `caminho/para/xampp/htdocs/`.
 
-    **Observação: Para evitar mover a pasta, o clone pode ser feito diretamente para o local correto.**
+    **Observação: Para evitar mover a pasta, o clone pode ser feito diretamente para a pasta de projetos.**
 
 ## Uso
 
