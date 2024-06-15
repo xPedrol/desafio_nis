@@ -9,7 +9,7 @@ const gerar_nis = () => {
     nis_div.style.display = "none";
     const formData = new FormData();
     formData.append('nome', nome.value);
-    fetch('http://localhost/desafio/backend/?endpoint=adicionar_pessoa', {
+    fetch('http://localhost/desafio_nis/backend/?rota=adicionar_pessoa', {
         method: "POST",
         body: formData
     }).then(response => response.json())

@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div id="nis-div-erro" class="w-full hidden">
-                <p class="mt-4 text-lg leading-8 text-red-500 text-center">Erro ao gerar NIS. Clique <a class="text-blue-500" href="index.html">aqui</a> para tentar novamente</p>
+                <p class="mt-4 text-lg leading-8 text-red-500 text-center">Erro ao gerar NIS. Clique <a class="text-blue-500" href="index.php">aqui</a> para tentar novamente</p>
                 <p class="w-full text-red-500 text-center text-xs" id="descricao-erro"></p>
             </div>
             <div id="nis-div">
@@ -49,6 +49,6 @@
         </div>
     </div>
 </div>
-<script src="javascripit/index.js"></script>
+<script src="javascript/index.js"></script>
 </body>
 </html>

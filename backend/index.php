@@ -26,13 +26,13 @@ class Index
             if ($metodo === 'POST') {
                 $rota->set_parametros($_POST);
             }
-            if (isset($_GET['endpoint'])) {
-                $caminho_rota = $_GET['endpoint'];
+            if (isset($_GET['rota'])) {
+                $caminho_rota = $_GET['rota'];
             }
-            // É necessário enviar o caminho da rota via uma variavel tipo GET chamada endpoint.
+            // É necessário enviar o caminho da rota via uma variavel tipo GET chamada rota.
             if (!$caminho_rota) {
                 $api->enviar_resposta(array(
-                    'conteudo' => 'Por favor especifique um endpoint',
+                    'conteudo' => 'Por favor especifique uma rota atraves de "?rota="',
                     'status' => '400'
                 ));
             }

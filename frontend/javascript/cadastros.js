@@ -1,6 +1,6 @@
 const buscar_pessoas = () => {
     const cadastros = document.getElementById('cadastros');
-    fetch('http://localhost/desafio/backend/?endpoint=buscar_pessoas', {
+    fetch('http://localhost/desafio_nis/backend/?rota=buscar_pessoas', {
         method: 'GET',
     }).then(response => response.json())
         .then(data => {

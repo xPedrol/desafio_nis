@@ -50,6 +50,6 @@
         </div>
     </div>
 </div>
-<script src="javascripit/cadastros.js"></script>
+<script src="javascript/cadastros.js"></script>
 </body>
 </html>
