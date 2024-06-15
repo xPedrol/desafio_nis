@@ -18,7 +18,8 @@
             <div id="nis-div">
                 <p class="mt-4 text-lg leading-8 text-gray-500">Lista de todos os NIS cadastrados.</p>
 
-                <p class="mt-4 text-lg leading-8 text-red-500 text-center" id="sem-cadastros">Nenhum cadastro foi encontrado.</p>
+                <p class="mt-4 text-lg leading-8 text-red-500 text-center" id="sem-cadastros">Nenhum cadastro foi
+                    encontrado.</p>
                 <div class="relative overflow-x-auto mt-4 hidden" id="cadastros-tabela">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead class="text-xs uppercase">
@@ -41,7 +42,7 @@
             <div class="w-full border-b-[2px] my-3 h-0.5"></div>
             <div class="w-full flex flex-col">
                 <p class="mt-4 text-lg leading-8 text-gray-500">Para cadastramento de NIS clique no botão abaixo.</p>
-                <a href="index.html"
+                <a href="index.php"
                    class="mt-3 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm text-center font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                     Cadastrar NIS
                 </a>

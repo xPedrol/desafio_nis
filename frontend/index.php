@@ -18,7 +18,7 @@
             <div id="nis-div-sucesso" class="w-full hidden">
                 <p class="mt-4 text-lg leading-8 text-green-500">Parabens! NIS gerado com sucesso.</p>
                 <div class="mt-6 text-center">
-                    <p class="text-xl font-bold leading-8 tracking-[0.3em]" id="nis-p">12345678910</p>
+                    <p class="text-xl font-bold leading-8 tracking-[0.3em]" id="nis-p"></p>
                 </div>
             </div>
             <div id="nis-div-erro" class="w-full hidden">
@@ -41,7 +41,7 @@
             <div class="w-full border-b-[2px] my-3 h-0.5"></div>
             <div class="w-full flex flex-col">
                 <p class="mt-4 text-lg leading-8 text-gray-500">Para buscar algum NIS já cadastrado clique no botão abaixo.</p>
-                <a href="cadastros.html"
+                <a href="cadastros.php"
                         class="mt-3 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm text-center font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                     Buscar cadastros
                 </a>

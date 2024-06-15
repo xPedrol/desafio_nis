@@ -21,10 +21,6 @@ class Rota
 
     public function set_metodo($metodo)
     {
-        $metodos = ['POST', 'GET'];
-        if (!in_array($metodo, $metodos)) {
-            return $this->enviar_erro('Método inválido');
-        }
         $this->metodo = $metodo;
     }
 
@@ -74,6 +70,8 @@ class Rota
     public function adicionar_pessoa()
     {
         if ($this->metodo !== 'POST') return $this->enviar_erro('Método inválido');
+        if (!isset($this->parametros['nome'])) return $this->enviar_erro('Nome inváido');
+        if (trim($this->parametros['nome']) === "") return $this->enviar_erro('Nome inváido');
         try {
             $pessoa = new Pessoa($this->parametros['nome']);
             $res = $this->pessoa_controlador->adicionar_pessoa($pessoa);
@@ -87,18 +85,6 @@ class Rota
         }
 
 
-    }
-
-    public function get_quantidade_pessoas()
-    {
-        if ($this->metodo !== 'GET') return $this->enviar_erro('Método inválido');
-        try {
-            return array(
-                'conteudo' => $this->pessoa_controlador->get_quantidade()
-            );
-        } catch (Exception $e) {
-            return $this->enviar_erro($e->getMessage());
-        }
     }
 
 }

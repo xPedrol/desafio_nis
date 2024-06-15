@@ -1,8 +1,11 @@
 const buscar_pessoas = () => {
     const cadastros = document.getElementById('cadastros');
-    fetch('http://localhost/desafio/backend?endpoint=buscar_pessoas').then(response => response.json())
+    fetch('http://localhost/desafio/backend/?endpoint=buscar_pessoas', {
+        method: 'GET',
+    }).then(response => response.json())
         .then(data => {
-            if (data['conteudo'] === []) return;
+            if (!Array.isArray(data['conteudo'])) return;
+            if (data['conteudo'].length === 0) return;
             document.getElementById('sem-cadastros').style.display = 'none';
             document.getElementById('cadastros-tabela').style.display = 'block';
             let trs = '';

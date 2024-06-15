@@ -1,5 +1,6 @@
 <?php
 require_once 'configuracoes/Cookie.php';
+
 // Classe responsável por gerir o vetor de pessoas. Aqui se encontra as regras de negocio para lidar com a gestão de pessoas cadastradas.
 class Pessoa_Controlador
 {
@@ -10,52 +11,40 @@ class Pessoa_Controlador
         if (Cookie::vazio('pessoas')) {
             Cookie::set_array('pessoas', []);
         }
-        if (Cookie::vazio('quantidade_pessoas')) {
-            Cookie::set('quantidade_pessoas', 0);
-        }
 
     }
 
-    public function set_pessoa($pessoa)
+    public function set_pessoa(Pessoa $pessoa): void
     {
         $pessoas = $this->get_pessoas();
         $pessoas[] = $pessoa;
         Cookie::set_array('pessoas', $pessoas);
     }
 
-    public function get_pessoas()
+    public function get_pessoas(): mixed
     {
         return Cookie::get_array('pessoas');
     }
 
-    public function get_quantidade()
-    {
-        return intval(Cookie::get('quantidade_pessoas'));
-    }
-
-    public function set_quantidade($quantidade)
-    {
-        Cookie::set('quantidade_pessoas', $quantidade);
-    }
-
-    public function adicionar_pessoa(Pessoa $pessoa)
+    public function adicionar_pessoa(Pessoa $pessoa): Pessoa|Exception
     {
         // Aqui verificamos se uma pessoa existe e geramos o NIS
         if ($this->buscar_pessoa($pessoa) !== null) {
             return new Exception('Pessoa já cadastrada');
         }
-        $pessoa->set_nis(mt_rand(00000000000, 99999999999));
+        $nis = '';
+        for ($i = 0; $i < 11; $i++) {
+            $nis .= mt_rand(0, 9);
+        }
+        $pessoa->set_nis($nis);
         $this->set_pessoa($pessoa);
-        $this->set_quantidade($this->get_quantidade() + 1);
         return $pessoa;
     }
 
 
-    public function buscar_pessoa(Pessoa $pessoa)
+    public function buscar_pessoa(Pessoa $pessoa): ?Pessoa
     {
         $pessoas = $this->get_pessoas();
-        $quantidade = $this->get_quantidade();
-        if ($quantidade == 0) return null;
         foreach ($pessoas as $pessoa_cadastrada) {
             if ($pessoa_cadastrada->get_nis() == $pessoa->get_nis() || $pessoa_cadastrada->get_nome() == $pessoa->get_nome()) {
                 return $pessoa;
@@ -63,11 +52,12 @@ class Pessoa_Controlador
         }
         return null;
     }
+
     // Esse método é necessário para converter o vetor de Pessoa para um formato suportavel pelo JSON
-    public function formatar_pessoas()
+    public function formatar_pessoas(): array
     {
         $pessoas = $this->get_pessoas();
-        if($pessoas == null) return [];
+        if ($pessoas == null) return [];
         $novo_vetor = [];
         foreach ($pessoas as $pessoa) {
             $novo_vetor[] = $pessoa->converter();

@@ -25,7 +25,7 @@ class Api
         }
         header('Content-type: application/json');
         header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: GET, POST");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
         header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
         echo json_encode($retorno);
         die(1);
