@@ -11,9 +11,9 @@ const buscar_pessoas = () => {
             let trs = '';
             for (const pessoa of data['conteudo']) {
                 trs += `<tr class="odd:bg-white even:bg-gray-50">
-                <th scope="row" class="py-4 font-medium text-gray-900 whitespace-nowrap">
+                <td scope="row" class="py-4 font-medium text-gray-900 whitespace-nowrap">
                    ${pessoa['nome']}
-                </th>
+                </td>
                 <td class="py-4">
                     ${pessoa['nis']}
                 </td>
