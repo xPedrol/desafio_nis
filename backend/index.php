@@ -14,7 +14,6 @@ class Index
             $api = new Api();
             $rota = new Rota();
 
-
             $metodo = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
             // Precisamos passar o metodo da requisição para Rota afim de filtar as rotas de acordo com os metodos que cada uma permite.
             $rota->set_metodo($metodo);

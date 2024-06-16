@@ -8,11 +8,11 @@ class Api
         $this->metodo = NULL;
     }
 
-    public function enviar_erro($messagem = 'Erro ao executar programa')
+    public function enviar_erro($messagem = 'Erro ao executar programa', $status = 500)
     {
         $retorno = array();
-        $retorno['status'] = 'erro';
-        $retorno['message'] = $messagem;
+        $retorno['status'] = $status;
+        $retorno['conteudo'] = $messagem;
         $this->enviar_resposta($retorno);
     }
 
