@@ -60,6 +60,17 @@ class Pessoa_Controlador
         return null;
     }
 
+    public function buscar_pessoa_nis(string $nis): ?Pessoa
+    {
+        $pessoas = $this->get_pessoas();
+        foreach ($pessoas as $pessoa_cadastrada) {
+            if ($pessoa_cadastrada->get_nis() == $nis) {
+                return $pessoa_cadastrada;
+            }
+        }
+        return null;
+    }
+
     // Esse método é necessário para converter o vetor de Pessoa para um formato suportavel pelo JSON
     public function formatar_pessoas(): array
     {

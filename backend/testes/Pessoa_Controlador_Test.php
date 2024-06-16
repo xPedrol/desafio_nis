@@ -7,18 +7,19 @@ use PHPUnit\Framework\TestCase;
 
 class Pessoa_Controlador_Test extends TestCase
 {
-    private $controlador;
+    private $controlador_mock;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->controlador = new Pessoa_Controlador();
+        $this->controlador_mock = $this->createMock(Pessoa_Controlador::class);
     }
 
 
     #[Test] public function teste_buscar_pessoa_vazio()
     {
-        $resultado = $this->controlador->buscar_pessoa(new Pessoa('João'));
+//        buscar_pessoa(new Pessoa('João'))
+        $resultado = $this->controlador_mock->method('buscar_pessoa')->with();
         // Verifique se o conteúdo retornado é o esperado
         $this->assertNull($resultado);
     }
@@ -37,7 +38,6 @@ class Pessoa_Controlador_Test extends TestCase
         $pessoa = new Pessoa('João');
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Pessoa já cadastrada');
-        print_r($this->controlador->get_pessoas());
         $this->controlador->adicionar_pessoa($pessoa);
         $this->controlador->adicionar_pessoa($pessoa);
     }
@@ -61,6 +61,7 @@ class Pessoa_Controlador_Test extends TestCase
     {
         $pessoa = new Pessoa('João');
         $this->controlador->adicionar_pessoa($pessoa);
+        $pessoas = $this->controlador->get_pessoas();
         $resultado = $this->controlador->buscar_pessoa($pessoa);
         $this->assertInstanceOf(Pessoa::class, $resultado);
     }

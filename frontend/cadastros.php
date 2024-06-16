@@ -14,13 +14,29 @@
     <div class="flex flex-col">
         <div class="p-10 w-full max-w-md  bg-white border-[1px] border-gray-400 rounded-md">
             <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Número de Identificação Social</h2>
-
-            <div id="nis-div">
-                <p class="mt-4 text-lg leading-8 text-gray-500">Lista de todos os NIS cadastrados.</p>
-
-                <p class="mt-4 text-lg leading-8 text-red-500 text-center" id="sem-cadastros">Nenhum cadastro foi
-                    encontrado.</p>
-                <div class="relative overflow-x-auto mt-4 hidden" id="cadastros-tabela">
+            <div>
+                <p class="mt-4 text-lg leading-8 text-gray-500">Preencha o campo abaixo com seu nome para gerar seu
+                    NIS.</p>
+                <form class="mt-6 flex max-w-md" onsubmit="buscar_pessoa_nis();return false;">
+                    <label for="nis-campo" class="sr-only">Número de Identificação Social</label>
+                    <input id="nis-campo" name="nis-campo" type="text" required
+                           class="min-w-0 mr-4 flex-auto rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                           placeholder="Insira um NIS para busca">
+                    <button type="submit"
+                            class="flex-none mr-2 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                        Buscar
+                    </button>
+                    <a href="cadastros.php"
+                            class="flex-none rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                        Limpar
+                    </a>
+                </form>
+            </div>
+            <p class="mt-4 text-lg leading-8 text-gray-500">Lista de NIS
+                encontrados.</p>
+            <p class="w-full text-red-500 text-center text-lg hidden mt-4" id="descricao-erro"></p>
+            <div id="nis-div" class="hidden mt-4">
+                <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead class="text-xs uppercase">
                         <tr>
@@ -37,7 +53,6 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
             <div class="w-full border-b-[2px] my-3 h-0.5"></div>
             <div class="w-full flex flex-col">

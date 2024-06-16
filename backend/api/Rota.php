@@ -67,11 +67,32 @@ class Rota
 
     }
 
+    public function buscar_pessoa_nis()
+    {
+        if ($this->metodo !== 'GET') return $this->enviar_erro('Método inválido', 400);
+        if (!isset($this->parametros['nis'])) return $this->enviar_erro('NIS inváido', 400);
+        if (trim($this->parametros['nis']) === "") return $this->enviar_erro('NIS inváido', 400);
+        $pessoa = $this->pessoa_controlador->buscar_pessoa_nis($this->parametros['nis']);
+        if ($pessoa === null) return array(
+            'status' => 404,
+            'conteudo' => 'NIS não cadastrado'
+        );
+        try {
+            return array(
+                'conteudo' => $pessoa->converter()
+            );
+        } catch (Exception $e) {
+            return $this->enviar_erro($e->getMessage());
+        }
+
+
+    }
+
     public function adicionar_pessoa()
     {
-        if ($this->metodo !== 'POST') return $this->enviar_erro('Método inválido');
-        if (!isset($this->parametros['nome'])) return $this->enviar_erro('Nome inváido');
-        if (trim($this->parametros['nome']) === "") return $this->enviar_erro('Nome inváido');
+        if ($this->metodo !== 'POST') return $this->enviar_erro('Método inválido', 400);
+        if (!isset($this->parametros['nome'])) return $this->enviar_erro('Nome inváido', 400);
+        if (trim($this->parametros['nome']) === "") return $this->enviar_erro('Nome inváido', 400);
         try {
             $pessoa = new Pessoa($this->parametros['nome']);
             $this->pessoa_controlador->adicionar_pessoa($pessoa);
