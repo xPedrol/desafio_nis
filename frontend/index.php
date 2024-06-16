@@ -21,12 +21,14 @@
                     <p class="text-xl font-bold leading-8 tracking-[0.3em]" id="nis-p"></p>
                 </div>
             </div>
-            <div id="nis-div-erro" class="w-full hidden">
-                <p class="mt-4 text-lg leading-8 text-red-500 text-center">Erro ao gerar NIS. Clique <a class="text-blue-500" href="index.php">aqui</a> para tentar novamente</p>
-                <p class="w-full text-red-500 text-center text-xs" id="descricao-erro"></p>
+            <div id="nis-div-erro" class="w-full hidden mt-4">
+                <p class="w-full text-red-500 text-center text-lg" id="descricao-erro"></p>
+                <p class="text-sm leading-8 text-red-500 text-center">Erro ao gerar NIS. Clique <a
+                            class="text-blue-500" href="index.php">aqui</a> para tentar novamente</p>
             </div>
             <div id="nis-div">
-                <p class="mt-4 text-lg leading-8 text-gray-500">Preencha o campo abaixo com seu nome para gerar seu NIS.</p>
+                <p class="mt-4 text-lg leading-8 text-gray-500">Preencha o campo abaixo com seu nome para gerar seu
+                    NIS.</p>
                 <form class="mt-6 flex max-w-md gap-x-4" onsubmit="gerar_nis();return false;">
                     <label for="nome" class="sr-only">Nome Completo</label>
                     <input id="nome" name="nome" type="text" required
@@ -40,9 +42,10 @@
             </div>
             <div class="w-full border-b-[2px] my-3 h-0.5"></div>
             <div class="w-full flex flex-col">
-                <p class="mt-4 text-lg leading-8 text-gray-500">Para buscar algum NIS já cadastrado clique no botão abaixo.</p>
+                <p class="mt-4 text-lg leading-8 text-gray-500">Para buscar algum NIS já cadastrado clique no botão
+                    abaixo.</p>
                 <a href="cadastros.php"
-                        class="mt-3 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm text-center font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                   class="mt-3 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm text-center font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                     Buscar cadastros
                 </a>
             </div>

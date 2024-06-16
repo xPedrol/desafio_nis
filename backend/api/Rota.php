@@ -75,7 +75,7 @@ class Rota
         $pessoa = $this->pessoa_controlador->buscar_pessoa_nis($this->parametros['nis']);
         if ($pessoa === null) return array(
             'status' => 404,
-            'conteudo' => 'NIS não cadastrado'
+            'conteudo' => 'Cidadão não encontrado'
         );
         try {
             return array(

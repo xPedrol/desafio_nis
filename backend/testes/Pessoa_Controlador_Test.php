@@ -37,7 +37,7 @@ class Pessoa_Controlador_Test extends TestCase
     {
         $pessoa = new Pessoa('João');
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage('Pessoa já cadastrada');
+        $this->expectExceptionMessage('Cidadão já cadastrado');
         $this->controlador->adicionar_pessoa($pessoa);
         $this->controlador->adicionar_pessoa($pessoa);
     }

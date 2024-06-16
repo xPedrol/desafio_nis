@@ -35,7 +35,7 @@ class Pessoa_Controlador
     {
         // Aqui verificamos se uma pessoa existe e geramos o NIS
         if ($this->buscar_pessoa($pessoa) !== null) {
-            throw new Exception('Pessoa já cadastrada');
+            throw new Exception('Cidadão já cadastrado');
         }
         $nis = '';
         for ($i = 0; $i < 11; $i++) {
