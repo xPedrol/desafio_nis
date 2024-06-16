@@ -11,7 +11,7 @@
 <body>
 <div class="bg-radial-pattern h-screen bg-size-50 flex justify-center items-center min-w-md mx-2">
     <div class="flex flex-col">
-        <div class="p-10 w-full max-w-md  bg-white border-[1px] border-gray-400 rounded-md">
+        <div class="p-10 w-full max-w-lg  bg-white border-[1px] border-gray-400 rounded-md">
             <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Número de Identificação Social</h2>
             <div>
                 <p class="mt-4 text-lg leading-8 text-gray-500">Preencha o campo abaixo com um NIS para buscar cidadão.</p>
@@ -33,7 +33,7 @@
             <p class="mt-4 text-lg leading-8 text-gray-500">Lista de NIS
                 encontrados.</p>
             <p class="w-full text-red-500 text-center text-lg hidden mt-4" id="descricao-erro"></p>
-            <div id="nis-div" class="hidden mt-4">
+            <div id="nis-div" class="hidden mt-4 overflow-y-auto max-h-[300px]">
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead class="text-xs uppercase">
@@ -42,7 +42,7 @@
                                 Nome
                             </th>
                             <th scope="col" class="py-3">
-                                NIS
+                                Nº Identificação Social
                             </th>
                         </tr>
                         </thead>

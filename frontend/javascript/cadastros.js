@@ -14,7 +14,7 @@ const buscar_pessoas = () => {
             let trs = '';
             for (const pessoa of data['conteudo']) {
                 trs += `<tr class="odd:bg-white even:bg-gray-50">
-                <td scope="row" class="py-4 font-medium text-gray-900 whitespace-nowrap">
+                <td scope="row" class="py-4 pr-3 font-medium text-gray-900 whitespace-nowrap">
                    ${pessoa['nome']}
                 </td>
                 <td class="py-4">
@@ -41,7 +41,7 @@ const buscar_pessoa_nis = () => {
             descricao_erro.style.display = 'none';
             nis_div.style.display = 'block';
             cadastros.innerHTML = `<tr class="odd:bg-white even:bg-gray-50">
-                <td scope="row" class="py-4 font-medium text-gray-900 whitespace-nowrap">
+                <td scope="row" class="py-4 pr-3 font-medium text-gray-900 whitespace-nowrap">
                    ${pessoa['nome']}
                 </td>
                 <td class="py-4">
