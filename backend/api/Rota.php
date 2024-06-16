@@ -58,7 +58,7 @@ class Rota
         if ($this->metodo !== 'GET') return $this->enviar_erro('Método inválido');
         try {
             return array(
-                'conteudo' => $this->pessoa_controlador->formatar_pessoas()
+                'conteudo' => $this->pessoa_controlador->converter_pessoas()
             );
         } catch (Exception $e) {
             return $this->enviar_erro($e->getMessage());

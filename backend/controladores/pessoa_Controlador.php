@@ -1,5 +1,5 @@
 <?php
-require_once 'configuracoes/Cookie.php';
+require_once 'configuracoes/Banco_de_Dados.php';
 
 // Classe responsável por gerir o vetor de pessoas. Aqui se encontra as regras de negocio para lidar com a gestão de pessoas cadastradas.
 class Pessoa_Controlador
@@ -7,28 +7,28 @@ class Pessoa_Controlador
 
     public function __construct()
     {
-        // Verificamos se as variaveis existem nos cookies, caso não existam elas são criadas.
-        if (Cookie::vazio('pessoas')) {
-            Cookie::set_array('pessoas', []);
-        }
-
+        Banco_de_Dados::criar_tabela();
     }
 
     public function limpar_armazenamento()
     {
-        $_COOKIE = [];
+        Banco_de_Dados::limpar();
     }
 
-    public function set_pessoa(Pessoa $pessoa): bool
+    private function adicionar_pessoa_banco(Pessoa $pessoa): bool
     {
-        $pessoas = $this->get_pessoas();
-        $pessoas[] = $pessoa;
-        return Cookie::set_array('pessoas', $pessoas);
+        Banco_de_Dados::salvar($pessoa->converter());
+        return true;
     }
 
-    public function get_pessoas(): mixed
+    private function buscar_pessoas_banco(): array
     {
-        return Cookie::get_array('pessoas');
+        $pessoas_banco = Banco_de_Dados::buscar();
+        $pessoas_objeto = array();
+        foreach ($pessoas_banco as $pessoa) {
+            $pessoas_objeto[] = new Pessoa($pessoa['nome'], $pessoa['nis']);
+        }
+        return $pessoas_objeto;
     }
 
     public function adicionar_pessoa(Pessoa $pessoa): Pessoa
@@ -42,7 +42,7 @@ class Pessoa_Controlador
             $nis .= mt_rand(0, 9);
         }
         $pessoa->set_nis($nis);
-        if (!$this->set_pessoa($pessoa)) {
+        if (!$this->adicionar_pessoa_banco($pessoa)) {
             throw new Exception('Erro ao cadastrar pessoa');
         }
         return $pessoa;
@@ -51,7 +51,7 @@ class Pessoa_Controlador
 
     public function buscar_pessoa(Pessoa $pessoa): ?Pessoa
     {
-        $pessoas = $this->get_pessoas();
+        $pessoas = $this->buscar_pessoas_banco();
         foreach ($pessoas as $pessoa_cadastrada) {
             if ($pessoa_cadastrada->get_nis() == $pessoa->get_nis() || $pessoa_cadastrada->get_nome() == $pessoa->get_nome()) {
                 return $pessoa;
@@ -62,7 +62,7 @@ class Pessoa_Controlador
 
     public function buscar_pessoa_nis(string $nis): ?Pessoa
     {
-        $pessoas = $this->get_pessoas();
+        $pessoas = $this->buscar_pessoas_banco();
         foreach ($pessoas as $pessoa_cadastrada) {
             if ($pessoa_cadastrada->get_nis() == $nis) {
                 return $pessoa_cadastrada;
@@ -71,10 +71,10 @@ class Pessoa_Controlador
         return null;
     }
 
-    // Esse método é necessário para converter o vetor de Pessoa para um formato suportavel pelo JSON
-    public function formatar_pessoas(): array
+    // Esse método é necessário para converter o vetor de Pessoa para um vetor associativo
+    public function converter_pessoas(): array
     {
-        $pessoas = $this->get_pessoas();
+        $pessoas = $this->buscar_pessoas_banco();
         if ($pessoas == null) return [];
         $novo_vetor = [];
         foreach ($pessoas as $pessoa) {
