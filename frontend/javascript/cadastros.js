@@ -7,7 +7,8 @@ const buscar_pessoas = () => {
         method: 'GET',
     }).then(response => response.json())
         .then(data => {
-            if (data.status !== 200) throw new Error('Nenhum cadastro foi encontrado.');
+            if (data.status !== 200) throw new Error(data.conteudo);
+            if (data.conteudo.length === 0) throw new Error('Nenhum cadastro foi encontrado.')
             descricao_erro.style.display = 'none';
             nis_div.style.display = 'block';
             let trs = '';
