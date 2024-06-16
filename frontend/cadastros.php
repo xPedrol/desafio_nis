@@ -6,17 +6,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="estilos/output.css" rel="stylesheet">
-    <link href="estilos/utils.css" rel="stylesheet">
     <title>Número de Identificação Social</title>
 </head>
 <body>
-<div class="bg-radial-gradient flex justify-center items-center min-w-md mx-2">
+<div class="bg-radial-pattern h-screen bg-size-50 flex justify-center items-center min-w-md mx-2">
     <div class="flex flex-col">
         <div class="p-10 w-full max-w-md  bg-white border-[1px] border-gray-400 rounded-md">
             <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Número de Identificação Social</h2>
             <div>
-                <p class="mt-4 text-lg leading-8 text-gray-500">Preencha o campo abaixo com seu nome para gerar seu
-                    NIS.</p>
+                <p class="mt-4 text-lg leading-8 text-gray-500">Preencha o campo abaixo com um NIS para buscar cidadão.</p>
                 <form class="mt-6 flex max-w-md" onsubmit="buscar_pessoa_nis();return false;">
                     <label for="nis-campo" class="sr-only">Número de Identificação Social</label>
                     <input id="nis-campo" name="nis-campo" type="text" required
