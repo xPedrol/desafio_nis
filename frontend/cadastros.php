@@ -34,7 +34,7 @@
             <p class="mt-4 text-lg leading-8 text-gray-500">Lista de NIS
                 encontrados.</p>
             <p class="w-full text-red-500 text-center text-lg hidden mt-4" id="descricao-erro-p"></p>
-            <div id="nis-div" class="hidden mt-4 overflow-y-auto max-h-[300px]">
+            <div id="nis-div" class="hidden mt-4 overflow-y-auto max-h-[25vh]">
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead class="text-xs uppercase">
