@@ -11,10 +11,11 @@
 <body>
 <div class="bg-radial-pattern h-screen bg-size-50 flex justify-center items-center min-w-md mx-2">
     <div class="flex flex-col">
-        <div class="p-10 w-full max-w-lg  bg-white border-[1px] border-gray-400 rounded-md">
+        <main class="p-10 w-full max-w-lg  bg-white border-[1px] border-gray-400 rounded-md">
             <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Número de Identificação Social</h2>
             <div>
-                <p class="mt-4 text-lg leading-8 text-gray-500">Preencha o campo abaixo com um NIS para buscar cidadão.</p>
+                <p class="mt-4 text-lg leading-8 text-gray-500">Preencha o campo abaixo com um NIS para buscar
+                    cidadão.</p>
                 <form class="mt-6 flex max-w-md" onsubmit="buscar_pessoa_nis();return false;">
                     <label for="nis-campo" class="sr-only">Número de Identificação Social</label>
                     <input id="nis-campo" name="nis-campo" type="text" required
@@ -25,14 +26,14 @@
                         Buscar
                     </button>
                     <a href="cadastros.php"
-                            class="flex-none rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                       class="flex-none rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                         Limpar
                     </a>
                 </form>
             </div>
             <p class="mt-4 text-lg leading-8 text-gray-500">Lista de NIS
                 encontrados.</p>
-            <p class="w-full text-red-500 text-center text-lg hidden mt-4" id="descricao-erro"></p>
+            <p class="w-full text-red-500 text-center text-lg hidden mt-4" id="descricao-erro-p"></p>
             <div id="nis-div" class="hidden mt-4 overflow-y-auto max-h-[300px]">
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -46,7 +47,7 @@
                             </th>
                         </tr>
                         </thead>
-                        <tbody id="cadastros">
+                        <tbody id="cadastros-tbody">
 
                         </tbody>
                     </table>
@@ -60,7 +61,7 @@
                     Cadastrar NIS
                 </a>
             </div>
-        </div>
+        </main>
     </div>
 </div>
 <script src="javascript/cadastros.js"></script>

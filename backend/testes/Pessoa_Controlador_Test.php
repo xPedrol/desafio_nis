@@ -36,6 +36,16 @@ class Pessoa_Controlador_Test extends TestCase
         $this->assertInstanceOf(Pessoa::class, $teste_pessoa);
     }
 
+    /**
+     * @throws Exception
+     */
+    #[Test] public function teste_adicionar_pessoa_invalida()
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Nome inválido');
+        $this->controlador->adicionar_pessoa(new Pessoa(''));
+    }
+
     #[Test] public function teste_adicionar_pessoa_repetida()
     {
         $pessoa = new Pessoa('João');
@@ -83,14 +93,20 @@ class Pessoa_Controlador_Test extends TestCase
     #[Test] public function teste_buscar_pessoa_nis_existe()
     {
         $pessoa = $this->controlador->adicionar_pessoa(new Pessoa('João'));
-        $resultado = $this->controlador->buscar_pessoa($pessoa);
+        $resultado = $this->controlador->buscar_pessoa_nis($pessoa->get_nis());
         $this->assertInstanceOf(Pessoa::class, $resultado);
+    }
+
+    #[Test] public function teste_buscar_pessoa_nis_invalido()
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('NIS inválido');
+        $this->controlador->buscar_pessoa_nis('');
     }
 
     #[Test] public function teste_buscar_pessoa_nis_nao_existe()
     {
-        $pessoa = new Pessoa('João');
-        $resultado = $this->controlador->buscar_pessoa($pessoa);
+        $resultado = $this->controlador->buscar_pessoa_nis('11111111111');
         $this->assertNull($resultado);
     }
 

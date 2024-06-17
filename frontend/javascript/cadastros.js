@@ -1,15 +1,15 @@
-const cadastros = document.getElementById('cadastros');
+const cadastros_tbody = document.getElementById('cadastros-tbody');
 const nis_div = document.getElementById("nis-div");
-const descricao_erro = document.getElementById("descricao-erro");
-
+const descricao_erro_p = document.getElementById("descricao-erro-p");
+const url_base = 'http://localhost/desafio_nis/backend/';
 const buscar_pessoas = () => {
-    fetch('http://localhost/desafio_nis/backend/?rota=buscar_pessoas', {
+    fetch(`${url_base}?rota=buscar_pessoas`, {
         method: 'GET',
     }).then(response => response.json())
         .then(data => {
             if (data.status !== 200) throw new Error(data.conteudo);
             if (data.conteudo.length === 0) throw new Error('Nenhum cadastro foi encontrado.')
-            descricao_erro.style.display = 'none';
+            descricao_erro_p.style.display = 'none';
             nis_div.style.display = 'block';
             let trs = '';
             for (const pessoa of data['conteudo']) {
@@ -22,25 +22,25 @@ const buscar_pessoas = () => {
                 </td>
             </tr>`;
             }
-            cadastros.innerHTML += trs;
+            cadastros_tbody.innerHTML += trs;
         }).catch((erro) => {
         nis_div.style.display = "none";
-        descricao_erro.style.display = "block";
-        descricao_erro.innerText = erro;
+        descricao_erro_p.innerText = erro;
+        descricao_erro_p.style.display = "block";
     });
 }
 
 const buscar_pessoa_nis = () => {
     const nis = document.querySelector('#nis-campo').value;
-    fetch(`http://localhost/desafio_nis/backend/?rota=buscar_pessoa_nis&nis=${nis}`, {
+    fetch(`${url_base}?rota=buscar_pessoa_nis&nis=${nis}`, {
         method: 'GET',
     }).then(response => response.json())
         .then(data => {
             if (data.status !== 200) throw new Error(data.conteudo);
             const pessoa = data['conteudo'];
-            descricao_erro.style.display = 'none';
+            descricao_erro_p.style.display = 'none';
             nis_div.style.display = 'block';
-            cadastros.innerHTML = `<tr class="odd:bg-white even:bg-gray-50">
+            cadastros_tbody.innerHTML = `<tr class="odd:bg-white even:bg-gray-50">
                 <td scope="row" class="py-4 pr-3 font-medium text-gray-900 whitespace-nowrap">
                    ${pessoa['nome']}
                 </td>
@@ -51,8 +51,8 @@ const buscar_pessoa_nis = () => {
 
         }).catch((erro) => {
         nis_div.style.display = "none";
-        descricao_erro.style.display = "block";
-        descricao_erro.innerText = erro;
+        descricao_erro_p.innerText = erro;
+        descricao_erro_p.style.display = "block";
     });
 }
 

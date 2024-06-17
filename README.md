@@ -34,4 +34,4 @@ com o servidor utilizado.
 
 ## Executando os testes
 
-1. Os testes unitários foram criados utilizando `PhpUnit`. Para executá-los, digite no terminal, do diretório `/banckend`, o comando `.\vendor\bin\phpunit`.
+1. Os testes unitários foram criados utilizando `PhpUnit`. Para executá-los, digite `.\vendor\bin\phpunit` em um terminal no diretório `/banckend`.

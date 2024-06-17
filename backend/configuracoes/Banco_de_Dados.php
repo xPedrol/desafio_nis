@@ -4,7 +4,7 @@ require_once 'iniciar_env.php';
 class Banco_de_Dados
 {
     // Estabelece conexão com banco de dados.
-    public static function conectar()
+    public static function conectar(): PDO
     {
 
 
@@ -21,7 +21,7 @@ class Banco_de_Dados
     }
 
     // Armazena uma nome e nis de uma pessoa.
-    public static function salvar(array $valores)
+    public static function salvar(array $valores): void
     {
         $sql = "INSERT INTO pessoas (nome, nis) VALUES(:nome, :nis)";
         $conexao = Banco_de_Dados::conectar();
@@ -32,7 +32,7 @@ class Banco_de_Dados
     }
 
     // Busca todas as pessoas cadastradas.
-    public static function buscar()
+    public static function buscar(): false|array
     {
         $conexao = Banco_de_Dados::conectar();
         $sql = "SELECT * FROM pessoas";
@@ -42,14 +42,14 @@ class Banco_de_Dados
     }
 
     // Limpa a tabela pessoas. Usado para cada caso de teste.
-    public static function limpar()
+    public static function limpar(): void
     {
         $conexao = Banco_de_Dados::conectar();
         $sql = "TRUNCATE TABLE pessoas";
         $conexao->exec($sql);
     }
 
-    public static function criar_tabela()
+    public static function criar_tabela(): void
     {
         $conexao = Banco_de_Dados::conectar();
         $exists = $conexao->query("SHOW TABLES LIKE 'pessoas'")->rowCount() > 0;

@@ -5,18 +5,25 @@ require_once 'configuracoes/Banco_de_Dados.php';
 class Pessoa_Controlador
 {
 
+    /**
+     * @throws Exception
+     */
     public function __construct()
     {
         Banco_de_Dados::criar_tabela();
     }
 
-    public function limpar_armazenamento()
+    public function limpar_armazenamento(): void
     {
         Banco_de_Dados::limpar();
     }
 
+    /**
+     * @throws Exception
+     */
     private function adicionar_pessoa_banco(Pessoa $pessoa): bool
     {
+        if ($pessoa->get_nome() === null || trim($pessoa->get_nome()) === "") throw new Exception('Nome inválido', 400);
         Banco_de_Dados::salvar($pessoa->converter());
         return true;
     }
@@ -31,11 +38,15 @@ class Pessoa_Controlador
         return $pessoas_objeto;
     }
 
+
+    /**
+     * @throws Exception
+     */
     public function adicionar_pessoa(Pessoa $pessoa): Pessoa
     {
         // Aqui verificamos se uma pessoa existe e geramos o NIS
         if ($this->buscar_pessoa($pessoa) !== null) {
-            throw new Exception('Cidadão já cadastrado');
+            throw new Exception('Cidadão já cadastrado', 400);
         }
         $nis = '';
         for ($i = 0; $i < 11; $i++) {
@@ -43,7 +54,7 @@ class Pessoa_Controlador
         }
         $pessoa->set_nis($nis);
         if (!$this->adicionar_pessoa_banco($pessoa)) {
-            throw new Exception('Erro ao cadastrar pessoa');
+            throw new Exception('Erro ao cadastrar pessoa', 500);
         }
         return $pessoa;
     }
@@ -60,8 +71,12 @@ class Pessoa_Controlador
         return null;
     }
 
+    /**
+     * @throws Exception
+     */
     public function buscar_pessoa_nis(string $nis): ?Pessoa
     {
+        if (!isset($nis) || trim($nis) === "") throw new Exception('NIS inválido', 400);
         $pessoas = $this->buscar_pessoas_banco();
         foreach ($pessoas as $pessoa_cadastrada) {
             if ($pessoa_cadastrada->get_nis() == $nis) {

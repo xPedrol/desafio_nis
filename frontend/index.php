@@ -11,18 +11,18 @@
 <body>
 <div class="bg-radial-pattern h-screen bg-size-50 flex justify-center items-center min-w-md mx-2">
     <div class="flex flex-col">
-        <div class="p-10 max-w-md bg-white border-[1px] border-gray-400 rounded-md">
+        <main class="p-10 max-w-md bg-white border-[1px] border-gray-400 rounded-md">
             <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Número de Identificação Social</h2>
 
-            <div id="nis-div-sucesso" class="w-full hidden">
+            <div id="nis-sucesso-div" class="w-full hidden">
                 <p class="mt-4 text-lg leading-8 text-green-500">Parabens! NIS gerado com sucesso.</p>
                 <div class="mt-6 text-center">
                     <p class="text-xl font-bold leading-8 tracking-[0.3em]" id="nis-p"></p>
                 </div>
             </div>
-            <div id="nis-div-erro" class="w-full hidden mt-4">
-                <p class="w-full text-red-500 text-center text-lg" id="descricao-erro"></p>
-                <p class="text-sm leading-8 text-red-500 text-center">Erro ao gerar NIS. Clique <a
+            <div id="nis-erro-div" class="w-full hidden mt-4">
+                <p class="w-full text-red-500 text-center text-lg" id="descricao-erro-p"></p>
+                <p class="text-sm leading-8 text-red-500 text-center">Clique <a
                             class="text-blue-500" href="index.php">aqui</a> para tentar novamente</p>
             </div>
             <div id="nis-div">
@@ -47,7 +47,7 @@
                     Buscar cadastros
                 </a>
             </div>
-        </div>
+        </main>
     </div>
 </div>
 <script src="javascript/index.js"></script>
