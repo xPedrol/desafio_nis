@@ -9,9 +9,9 @@
     <title>Número de Identificação Social</title>
 </head>
 <body>
-<div class="bg-radial-pattern h-screen bg-size-50 flex justify-center items-center min-w-md mx-2">
-    <div class="flex flex-col h-full">
-        <main class="p-10 w-full my-3 max-w-lg overflow-y-auto max-h-screen bg-white border-[1px] border-gray-400 rounded-md">
+<div class="bg-radial-pattern h-screen overflow-hidden bg-size-50 flex justify-center items-center min-w-md mx-2">
+    <div class="flex flex-col">
+        <main class="p-10 w-full max-w-lg overflow-y-auto max-h-screen bg-white border-[1px] border-gray-400 rounded-md">
             <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Número de Identificação Social</h2>
             <div>
                 <p class="mt-4 text-lg leading-8 text-gray-500">Preencha o campo abaixo com um NIS para buscar
